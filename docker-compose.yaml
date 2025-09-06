@@ -1,0 +1,76 @@
+services:
+  # -------------------------
+  # PostgreSQL
+  # -------------------------
+  db:
+    image: postgres:17                # (As of 5/8/2025 the latest stable version)
+    environment:
+      POSTGRES_DB: nextcloud          # database name to auto-create
+      POSTGRES_USER: nextcloud        # role with ownership of that database
+      POSTGRES_PASSWORD: nextcloudpw  # password for the above role
+    volumes:
+      - db:/var/lib/postgresql/data # persist DB data 
+
+    healthcheck: # Is Postgres alive?
+      test: ["CMD", "pg_isready", "-U", "nextcloud", "-d", "nextcloud"]
+      start_period: 5s  # startup grace of 5 sec
+      interval: 3s      # check every 3 sec
+      timeout: 3s       # fail if no answer within 3 sec
+      retries: 3        # mark as unhealthy if 3 consecutive checks fail
+   
+
+  # -------------------------
+  # Redis
+  # -------------------------
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]   # AOF persistence
+    volumes:
+      - redis:/data   # persist Redis append-only log 
+
+    healthcheck: # Is redis alive?
+      test: ["CMD", "redis-cli", "ping"]
+      start_period: 5s  
+      interval: 3s      
+      timeout: 3s      
+      retries: 3        
+
+  # -------------------------
+  # Nextcloud
+  # -------------------------
+  nextcloud:
+    image: nextcloud:29       # official Nextcloud image
+    ports:
+      - "8080:80"             # expose web UI at http://localhost:8080
+    depends_on:
+      db:
+        condition: service_healthy   # wait until Postgres passes its healthcheck
+      redis:
+        condition: service_healthy   # wait until Redis passes its healthcheck
+    environment:
+      # Admin account
+      NEXTCLOUD_ADMIN_USER: admin
+      NEXTCLOUD_ADMIN_PASSWORD: password
+
+      # Database wiring 
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: nextcloudpw
+      POSTGRES_HOST: db
+
+      # Redis wiring
+      REDIS_HOST: redis
+      REDIS_HOST_PORT: 6379
+
+      # Memory and upload size limits
+      PHP_MEMORY_LIMIT: 512M  
+      PHP_UPLOAD_LIMIT: 1024M 
+
+    volumes:
+      - nc_html:/var/www/html # holds Nextcloud’s application files and its config 
+
+
+volumes:
+  db:      # Persistent storage for PostgreSQL data (database lives here)
+  redis:   # Persistent storage for Redis AOF logs
+  nc_html: # Persistent storage for Nextcloud 
