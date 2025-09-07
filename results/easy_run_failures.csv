@@ -1,5 +1,2 @@
 Method,Name,Error,Occurrences
-DELETE,DELETE /files/[user]/1.0MB,RemoteDisconnected('Remote end closed connection without response'),2
-PUT,PUT /files/[user]/1.0MB,RemoteDisconnected('Remote end closed connection without response'),5
-PROPFIND,PROPFIND /files/[user]/,RemoteDisconnected('Remote end closed connection without response'),2
-GET,GET /files/[user]/1.0MB,RemoteDisconnected('Remote end closed connection without response'),2
+PUT,PUT /files/[user]/1.0MB,RemoteDisconnected('Remote end closed connection without response'),6

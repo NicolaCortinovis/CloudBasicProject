@@ -41,7 +41,7 @@ services:
   # Nextcloud
   # -------------------------
   nextcloud:
-    image: nextcloud:29       # official Nextcloud image
+    image: nextcloud:31      # official Nextcloud image
     ports:
       - "8080:80"             # expose web UI at http://localhost:8080
     depends_on:
@@ -69,7 +69,6 @@ services:
 
       # Memory and upload size limits
       PHP_MEMORY_LIMIT: 2048M  
-      PHP_UPLOAD_LIMIT: 1024M 
 
       # Trusted domain, avoid warning
       NEXTCLOUD_TRUSTED_DOMAINS: "localhost"

@@ -1,5 +1,5 @@
 Method,Name,Error,Occurrences
-GET,GET /files/[user]/1.0MB,HTTPError('500 Server Error: Internal Server Error for url: GET /files/[user]/1.0MB'),515
-PROPFIND,PROPFIND /files/[user]/,HTTPError('500 Server Error: Internal Server Error for url: PROPFIND /files/[user]/'),253
-PUT,PUT /files/[user]/1.0MB,HTTPError('500 Server Error: Internal Server Error for url: PUT /files/[user]/1.0MB'),739
-DELETE,DELETE /files/[user]/1.0MB,HTTPError('500 Server Error: Internal Server Error for url: DELETE /files/[user]/1.0MB'),342
+GET,GET /files/[user]/1.0MB,HTTPError('500 Server Error: Internal Server Error for url: GET /files/[user]/1.0MB'),593
+PROPFIND,PROPFIND /files/[user]/,HTTPError('500 Server Error: Internal Server Error for url: PROPFIND /files/[user]/'),282
+PUT,PUT /files/[user]/1.0MB,HTTPError('500 Server Error: Internal Server Error for url: PUT /files/[user]/1.0MB'),900
+DELETE,DELETE /files/[user]/1.0MB,HTTPError('500 Server Error: Internal Server Error for url: DELETE /files/[user]/1.0MB'),468

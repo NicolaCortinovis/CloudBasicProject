@@ -18,6 +18,6 @@ docker exec --user www-data "$NEXTC" php occ app:disable firstrunwizard    || tr
 docker exec --user www-data "$NEXTC" php occ app:disable dashboard   || true
 docker exec --user www-data "$NEXTC" php occ app:disable photos    || true
 docker exec --user www-data "$NEXTC" php occ app:disable activity   || true
-
+docker exec --user www-data "$NEXTC" php occ app:disable user_status  || true
 
 echo "Done. Access Nextcloud at http://localhost:8080"

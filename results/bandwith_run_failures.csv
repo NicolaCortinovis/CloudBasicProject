@@ -1,3 +1,2 @@
 Method,Name,Error,Occurrences
-GET,GET /files/[user]/500.0MB,RemoteDisconnected('Remote end closed connection without response'),1
 PUT,PUT /files/[user]/500.0MB,RemoteDisconnected('Remote end closed connection without response'),6
