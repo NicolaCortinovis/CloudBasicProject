@@ -15,9 +15,9 @@ username: admin
 password: password
 ```
 
-If you're interested in replicating the locust tests you will first need to install `locust` on your python env of choice:
+If you're interested in replicating the locust tests you will first need to install `locust` and `python-dotenv` on your python env of choice:
 ```bash
-pip install locust
+pip install locust python-dotenv
 ``` 
 Then move to the folder **scripts** and run `create_users.sh` to populate the Nextcloud users
 ```bash
